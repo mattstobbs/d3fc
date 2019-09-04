@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Axis</title>
+    <meta name="description" content="A collection of components that make it easy to build interactive charts with D3.">
+
+    <script src="https://d3fc.io/lib/browser.js"></script>
+    <script src="https://d3fc.io/lib/custom-event-polyfill.js"></script>
+    <script src="https://d3fc.io/lib/document-register-element.js"></script>
+    <script src="https://d3fc.io/lib/d3.min.js"></script>
+    <script src="https://d3fc.io/lib/jquery.min.js"></script>
+    <script src="https://d3fc.io/lib/bootstrap.min.js"></script>
+    <script src="https://d3fc.io/lib/d3fc.min.js"></script>
+    <script src="https://d3fc.io/lib/d3-legend.min.js"></script>
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-96x96.png" sizes="96x96">
+    <link rel="stylesheet" href="https://d3fc.io/styles.css" />
+    <link rel="canonical" href="https://d3fc.io/api/axis-api.html" />
+  </head>
+  <body>
+    <div class="content">
+
+      <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="https://d3fc.io/"><img class="navbar-logo" alt="d3fc" src="https://d3fc.io/images/logo.svg" /></a>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse collapse">
+              <div class="floating-nav inverted">
+                <ul class="nav navbar-nav">
+                  <li class=""><a href="https://d3fc.io/introduction/getting-started.html">Documentation</a></li>
+                  <li class="active">
+                    <a href="https://d3fc.io/api/annotation-api.html">API</a>
+                      <ul class="sub-nav">
+                          <li class="sub-nav-item">
+                              <a href="/api/annotation-api.html">Annotation</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <span class="active">Axis</span>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/brush-api.html">Brush</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/chart-api.html">Chart</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/data-join-api.html">Data Join</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/discontinuous-scale-api.html">Discontinuous Scale</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/element-api.html">Element</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/extent-api.html">Extent</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/financial-feed-api.html">Financial Feed</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/group-api.html">Group</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/label-layout-api.html">Label Layout</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/pointer-api.html">Pointer</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/random-data-api.html">Random Data</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/rebind-api.html">Rebind</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/sample-api.html">Sample</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/series-api.html">Series</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/shape-api.html">Shape</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/technical-indicator-api.html">Technical Indicator</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li><a href="https://d3fc.io/examples/">Examples</a></li>
+                  <li><a href="https://github.com/d3fc/d3fc">GitHub</a></li>
+                  <li class="separator"></li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </nav>
+
+      
+<div class="container content">
+  <div class="col-sm-9">
+    <!-- LEVEL 1 -->
+      <div class="section">
+        <h1>
+          d3fc-axis
+            <a class="btn btn-default gh" href="https://github.com/d3fc/d3fc/tree/master/packages/d3fc-axis">View on GitHub</a>
+            <a class="btn btn-default unpkg" href="https://unpkg.com/@d3fc/d3fc-axis/build/d3fc-axis.min.js">View on unpkg</a>
+        </h1>
+<p>A drop-in replacement for D3 axis, with support for the D3FC decorate pattern, improved layout options for ordinal scales, and automatic label rotation / re-positioning.</p>
+<p><a href="https://github.com/d3fc/d3fc">Main D3FC package</a></p>
+        <!-- LEVEL 2 -->
+          <div class="block">
+            <h2 class="header">
+API Reference
+            </h2>
+            <!-- LEVEL 3 -->
+              <div class="block">
+                <h3 class="header">
+                  <a id="general-api" href="#general-api" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+General API
+                </h3>
+<p>This is a drop-in replacement for <a href="https://github.com/d3/d3-axis">d3-axis</a>, so please refer to that project for detailed documentation - all of the d3-axis properties and features are supported by this component. A few additional properties have been added, which are documented below.</p>
+<h4 id="tick-and-label-layout-options">Tick and label layout options</h4>
+<h4 id="centred-labels">Centred labels</h4>
+<p>When rendering an axis that is associated with a linear scale, the default behaviour for the axis is to render labels underneath each tick. This often makes the most sense, with the label indicating a specific instance on the scale.</p>
+<p>However, in some cases the label may refer to a range of data. For example, on a time scale, &#39;Monday&#39; refers to a time range rather than an instance in time. As a result, it makes more sense to render this label between the tick marks.</p>
+<p>With the D3FC axis, setting <code>tickCenterLabel</code> to <code>true</code> will render the labels in between the tick marks, offsetting them to the right:</p>
+<pre><code><span class="hljs-keyword">const</span> linear = d3.scaleTime()
+  .domain([<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-03-02'</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-03-07'</span>)])
+  .range([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>]);
+
+<span class="hljs-keyword">const</span> axis = fc.axisBottom(linear)
+  .tickArguments([<span class="hljs-number">5</span>])
+  .tickCenterLabel(<span class="hljs-literal">true</span>);</code></pre><img src="d3fc-axis/screenshots/center.png"/>
+
+<h5 id="band-scales">Band scales</h5>
+<p>Band scales are often used for rendering charts with a categorical dimension. With the D3 axis, the ticks and labels are rendered at the central point of each bar / column. However, it can make more sense to render the ticks at the boundary between each bar / category.</p>
+<p>The D3FC ordinal axis is a drop-in replacement that renders the labels at the central point of the bar / column, and the ticks at the boundaries:</p>
+<pre><code>const vegetableScale = d3.scale<span class="hljs-constructor">Band()</span>
+  .domain(<span class="hljs-literal">['C<span class="hljs-identifier">arrots</span>', 'B<span class="hljs-identifier">ananas</span>', 'S<span class="hljs-identifier">ausages</span>', 'P<span class="hljs-identifier">ickles</span>']</span>)
+  .padding<span class="hljs-constructor">Inner(0.1)</span>
+  .padding<span class="hljs-constructor">Outer(0.1)</span>
+  .range(<span class="hljs-literal">[<span class="hljs-number">0</span>, <span class="hljs-identifier">width</span>]</span>);
+
+const barSeries = fc.auto<span class="hljs-constructor">Bandwidth(<span class="hljs-params">fc</span>.<span class="hljs-params">seriesSvgBar</span>()</span>)
+  .align('left')
+  .cross<span class="hljs-constructor">Value(<span class="hljs-params">x</span> =&gt; <span class="hljs-params">x</span>.<span class="hljs-params">veg</span>)</span>
+  .main<span class="hljs-constructor">Value(<span class="hljs-params">x</span> =&gt; <span class="hljs-params">x</span>.<span class="hljs-params">qty</span>)</span>
+  .x<span class="hljs-constructor">Scale(<span class="hljs-params">vegetableScale</span>)</span>
+  .y<span class="hljs-constructor">Scale(<span class="hljs-params">qtyScale</span>)</span>;
+
+<span class="hljs-comment">// this is the D3FC ordinal axis</span>
+const axis = fc.axis<span class="hljs-constructor">OrdinalBottom(<span class="hljs-params">scale</span>)</span>;
+
+<span class="hljs-comment">// render the above components to SVG ...</span>
+var svg = d3.select('body').append('svg')
+...</code></pre><img src="d3fc-axis/screenshots/ordinal.png"/>
+
+<h4 id="label-rotation--offset">Label rotation / offset</h4>
+<p>With the D3 axis, if tick marks are too close together, their associated labels might overlap. With D3FC you can apply an adapter to the axis in order to automatically move / rotate labels in order to avoid collisions.</p>
+<p>Here&#39;s a simple example where the axis labels overlap:</p>
+<pre><code>const foodScale = d3.scal<span class="hljs-meta">eBand(</span>)
+    .doma<span class="hljs-meta">in(</span>[<span class="hljs-string">'Carrots'</span>, <span class="hljs-string">'Bananas'</span>, <span class="hljs-string">'Sausages'</span>, <span class="hljs-string">'Pickles'</span>, <span class="hljs-string">'Aubergines'</span>, <span class="hljs-string">'Artichokes'</span>, <span class="hljs-string">'Spinach'</span>, <span class="hljs-string">'Cucumber'</span>])
+    <span class="hljs-meta">.range(</span>[10, 290]);
+
+const axis = fc.axisOrdinalBottom(foodScale);
+
+d3.<span class="hljs-meta">select</span>(<span class="hljs-string">'svg'</span>)
+    .<span class="hljs-meta">call</span>(axis);</code></pre><img src="d3fc-axis/screenshots/overlap.png"/>
+
+<p>The overlap can be avoided by applying one of the adapters, for example you can apply the <code>axisLabelRotate</code> adapter as follows:</p>
+<pre><code>const axis = fc.axis<span class="hljs-constructor">LabelRotate(<span class="hljs-params">fc</span>.<span class="hljs-params">axisOrdinalBottom</span>(<span class="hljs-params">foodScale</span>)</span>);</code></pre><p>Each time the axis is rendered this adapter measures the labels and determines whether they need to be rotated in order to avoid collisions. With this example the axis renders as follows:</p>
+<img src="d3fc-axis/screenshots/rotate.png"/>
+
+<h4 id="decorate-pattern">Decorate pattern</h4>
+<p>Components that implement the decorate pattern expose a <code>decorate</code> property which is passed the data join selection used to construct the component&#39;s DOM. This allows users of the component to add extra logic to the enter, update and exit selections.</p>
+<p>For further details, consult the <a href="https://d3fc.io/introduction/decorate-pattern.html">Decorate Pattern documentation</a>.</p>
+<p>In the example below, the value bound to each tick is used to colour values greater than or equal to 100:</p>
+<pre><code><span class="hljs-keyword">const</span> scale = d3.scaleLinear()
+  .domain([<span class="hljs-number">0</span>, <span class="hljs-number">140</span>])
+  .range([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+  .nice();
+
+<span class="hljs-keyword">const</span> axis = fc.axisBottom(scale)
+  .decorate(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span>
+    s.enter()
+      .select(<span class="hljs-string">'text'</span>)
+      .style(<span class="hljs-string">'fill'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">return</span> d &gt;= <span class="hljs-number">100</span> ? <span class="hljs-string">'red'</span> : <span class="hljs-string">'black'</span>;
+      });
+  );</code></pre><img src="d3fc-axis/screenshots/color.png"/>
+
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="axis" href="#axis" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Axis
+                </h3>
+<p><img src="d3fc-axis/screenshots/axis.png" alt=""></p>
+<p><a name="axisBottom" href="#axisBottom">#</a> fc.<strong>axisBottom</strong>()<br><a name="axisTop" href="#axisTop">#</a> fc.<strong>axisTop</strong>()<br><a name="axisLeft" href="#axisLeft">#</a> fc.<strong>axisLeft</strong>()<br><a name="axisRight" href="#axisRight">#</a> fc.<strong>axisRight</strong>()  </p>
+<p>A drop-in replacement for D3 axis, see the <a href="https://github.com/d3/d3-axis#api-reference">D3 documentation for API reference</a>.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="ordinal-axis" href="#ordinal-axis" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Ordinal Axis
+                </h3>
+<p><img src="d3fc-axis/screenshots/ordinal.png" alt=""></p>
+<p><a name="axisOrdinalBottom" href="#axisOrdinalBottom">#</a> fc.<strong>axisOrdinalBottom</strong>()<br><a name="axisOrdinalTop" href="#axisOrdinalTop">#</a> fc.<strong>axisOrdinalTop</strong>()<br><a name="axisOrdinalLeft" href="#axisOrdinalLeft">#</a> fc.<strong>axisOrdinalLeft</strong>()<br><a name="axisOrdinalRight" href="#axisOrdinalRight">#</a> fc.<strong>axisOrdinalRight</strong>()  </p>
+<p>A drop-in replacement for D3 axis, see the <a href="https://github.com/d3/d3-axis#api-reference">D3 documentation for API reference</a>.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="axis-label-offset" href="#axis-label-offset" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Axis Label Offset
+                </h3>
+<p><img src="d3fc-axis/screenshots/offset.png" alt=""></p>
+<p><a name="axisLabelOffset" href="#axisLabelOffset">#</a> fc.<strong>axisLabelOffset</strong>(<em>axis</em>)</p>
+<p>An adapter that offsets axis labels in order to avoid collisions.</p>
+<p><a name="axisLabelOffset_labelOffsetDepth" href="#axisLabelOffset_labelOffsetDepth">#</a> <em>axis</em>.<strong>labelOffsetDepth</strong>(<em>offset</em>)</p>
+<p>If <em>offset</em> is specified, sets the offset depth and returns this series. If <em>offset</em> is not specified, returns the current offset depth.</p>
+<p>If <em>offset</em> is set to <code>auto</code>, the adapter will determine the required offset depth (i.e. number of levels) that labels need to be offset by in order to avoid collisions. If <em>offset</em> is set to a number, it will offset labels by the given depth.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="axis-label-rotate" href="#axis-label-rotate" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Axis Label Rotate
+                </h3>
+<img src="d3fc-axis/screenshots/rotate.png" style="width:400px;"/>
+
+<p><a name="axisLabelRotate" href="#axisLabelRotate">#</a> fc.<strong>axisLabelRotate</strong>(<em>axis</em>)</p>
+<p>An adapter that rotates axis labels in order to avoid collisions.</p>
+<p><a name="axisLabelRotate_labelRotate" href="#axisLabelRotate_labelRotate">#</a> <em>axis</em>.<strong>labelRotate</strong>(<em>degrees</em>)</p>
+<p>If <em>degrees</em> is specified, sets the rotation angle in degrees. If <em>degrees</em> is not specified, returns the current rotation angle.</p>
+<p>If <em>degrees</em> is set to <code>auto</code>, the adapter will determine whether the labels will overlap then rotate them to avoid collisions. Depending on the available space, the angle will vary from fairly shallow, all the way up to 90 degrees. If <em>degrees</em> is set to a number, it will rotate labels by the given angle.</p>
+              </div>
+            <!-- /LEVEL 3 -->
+          </div>
+        <!-- /LEVEL 2 -->
+      </div>
+    <!-- /LEVEL 1 -->
+
+    <p class="edit-page-block">Found a problem in this page? <a href="https://github.com/d3fc/d3fc/blob/master/packages/d3fc-axis/README.md" target+"_blank">Submit a fix!</a></p>
+  </div>
+
+  <nav class="col-sm-3 hidden-xs nav-container">
+    <ul class="nav nav-stacked fixed nav-sidebar">
+        <li>
+            <a href="/api/annotation-api.html">Annotation</a>
+        </li>
+        <li>
+            <span class="active">Axis</span>
+            <ul class="nav nav-stacked">
+                <li>
+                  <a href="#general-api">
+                    General API
+                  </a>
+                </li>
+                <li>
+                  <a href="#axis">
+                    Axis
+                  </a>
+                </li>
+                <li>
+                  <a href="#ordinal-axis">
+                    Ordinal Axis
+                  </a>
+                </li>
+                <li>
+                  <a href="#axis-label-offset">
+                    Axis Label Offset
+                  </a>
+                </li>
+                <li>
+                  <a href="#axis-label-rotate">
+                    Axis Label Rotate
+                  </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/api/brush-api.html">Brush</a>
+        </li>
+        <li>
+            <a href="/api/chart-api.html">Chart</a>
+        </li>
+        <li>
+            <a href="/api/data-join-api.html">Data Join</a>
+        </li>
+        <li>
+            <a href="/api/discontinuous-scale-api.html">Discontinuous Scale</a>
+        </li>
+        <li>
+            <a href="/api/element-api.html">Element</a>
+        </li>
+        <li>
+            <a href="/api/extent-api.html">Extent</a>
+        </li>
+        <li>
+            <a href="/api/financial-feed-api.html">Financial Feed</a>
+        </li>
+        <li>
+            <a href="/api/group-api.html">Group</a>
+        </li>
+        <li>
+            <a href="/api/label-layout-api.html">Label Layout</a>
+        </li>
+        <li>
+            <a href="/api/pointer-api.html">Pointer</a>
+        </li>
+        <li>
+            <a href="/api/random-data-api.html">Random Data</a>
+        </li>
+        <li>
+            <a href="/api/rebind-api.html">Rebind</a>
+        </li>
+        <li>
+            <a href="/api/sample-api.html">Sample</a>
+        </li>
+        <li>
+            <a href="/api/series-api.html">Series</a>
+        </li>
+        <li>
+            <a href="/api/shape-api.html">Shape</a>
+        </li>
+        <li>
+            <a href="/api/technical-indicator-api.html">Technical Indicator</a>
+        </li>
+    </ul>
+  </nav>
+</div>
+
+
+    </div>
+    <footer>
+      <div class="container">
+        <p class="muted credit text-center">Project supported by <a href="http://www.scottlogic.com">Scott Logic</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
