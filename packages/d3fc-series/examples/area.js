@@ -14,7 +14,7 @@ var yScale = d3.scaleLinear()
     .domain(fc.extentLinear()(data))
     .range([height, 0]);
 
-var svgLine = fc.seriesSvgArea()
+var svgArea = fc.seriesSvgArea()
     .xScale(xScale)
     .yScale(yScale)
     .defined((_, i) => i % 20 !== 0)
@@ -24,14 +24,14 @@ var svgLine = fc.seriesSvgArea()
 
 container.append('g')
     .datum(data)
-    .call(svgLine);
+    .call(svgArea);
 
 var canvas = d3.select('#area-canvas').node();
 canvas.width = width;
 canvas.height = height;
 var ctx = canvas.getContext('2d');
 
-var canvasLine = fc.seriesCanvasArea()
+var canvasArea = fc.seriesCanvasArea()
     .xScale(xScale)
     .yScale(yScale)
     .defined((_, i) => i % 20 !== 0)
@@ -39,7 +39,7 @@ var canvasLine = fc.seriesCanvasArea()
     .crossValue(function(_, i) { return i; })
     .mainValue(function(d) { return d; })
     .baseValue(10.5);
-canvasLine(data);
+canvasArea(data);
 
 var webgl = d3.select('#area-webgl').node();
 webgl.width = width;
